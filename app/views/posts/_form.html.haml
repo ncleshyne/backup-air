@@ -1,0 +1,39 @@
+.posts-wrapper
+  .post
+    .post-body
+      .image-wrap
+        = form_image_select(@post)
+        = simple_form_for @post, html: { multipart: true } do |f|
+          .row
+            .col-md-12.text-center
+              = f.error_notification
+          .container-fluid
+            .form-group.text-center
+              %h4 Upload an image:
+              = f.input :image, label: false, input_html: { onChange: 'loadFile(event)' }
+            .form-group.text-center
+              = f.input :title, label: false, placeholder: 'Title of your listing'
+            .form-group.text-center
+              = f.input :location, label: false, placeholder: 'Location'
+            .form-group.text-center
+              = f.input :about, label: false, placeholder: 'About this listing'
+            .form-group.text-center
+              = f.input :accommodates, label: false, placeholder: 'Accommodates'
+            .form-group.text-center
+              = f.input :bathrooms, label: false, placeholder: 'Bathrooms'
+            .form-group.text-center
+              = f.input :bedrooms, label: false, placeholder: 'Bedrooms'
+            .form-group.text-center
+              = f.input :beds, label: false, placeholder: 'Beds'
+            .form-group.text-center
+              = f.input :property_type, label: false, placeholder: 'Property type'
+            .form-group.text-center
+              = f.input :room_type, label: false, placeholder: 'Room type'
+            .form-group.text-center
+              = f.input :amenities, label: false, placeholder: 'Amenities'
+            .form-group.text-center
+              = f.input :price, label: false, placeholder: 'Price'
+            .form-group.text-center
+              = f.input :house_rules, label: false, placeholder: 'House Rules'
+            .form-group.text-center
+              = f.button :submit, class: 'btn-success btn-block'

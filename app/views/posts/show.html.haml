@@ -1,0 +1,36 @@
+= render 'post', post: @post
+.post-bottom
+  .caption
+    .caption-content
+      = @post.title
+      %br/
+      = @post.location
+      %br/
+      = @post.about
+      %br/
+      = @post.accommodates
+      %br/
+      = @post.bathrooms
+      %br/
+      = @post.bedrooms
+      %br/
+      = @post.beds
+      %br/
+      = @post.property_type
+      %br/
+      = @post.room_type
+      %br/
+      = @post.amenities
+      %br/
+      = @post.price
+      = @post.house_rules
+
+
+- if @post.user.id == current_user.id
+  .text-center.edit-links
+    = link_to "Cancel", posts_path
+    |
+    = link_to "Edit Post", edit_post_path(@post)
+- else
+  .text-center.edit-links
+    =link_to "Cancel", posts_path

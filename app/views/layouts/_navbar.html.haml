@@ -16,3 +16,5 @@
             %button.btn.btn-default.btn-lg{"aria-label" => "Right Align", :type => "button"}
               %span.glyphicon.glyphicon-off{"aria-hidden" => "true"}
             = link_to " ", destroy_user_session_path, class: 'log', method: :delete
+- else
+  = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path

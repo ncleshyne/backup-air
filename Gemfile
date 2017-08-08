@@ -35,9 +35,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'geocoder'
 gem 'simple_form'
 gem 'devise'
+gem 'rails_db'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'haml'
 gem 'kaminari', '~> 0.16.3'

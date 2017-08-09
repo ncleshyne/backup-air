@@ -3,7 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :owned_post, only: [:edit, :update, :destroy]
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @user = current_user
+    if params[:search].present?
+      @posts = Post.near(params[:search], 50, :order => 'distance', :units => :km)
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -46,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :about, :title, :property_type, :beds, :location, :accommodates, :bathrooms, :bedrooms, :room_type, :amenities, :price, :house_rules)
+    params.require(:post).permit(:image, :about, :title, :property_type, :beds, :location, :accommodates, :bathrooms, :bedrooms, :room_type, :amenities, :price, :house_rules, :address, :latitude, :longitude)
   end
 
   def set_post

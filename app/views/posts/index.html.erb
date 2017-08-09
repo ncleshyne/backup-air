@@ -1,0 +1,38 @@
+<div class="posts-wrapper row"></div>
+<div class="row" id="searchfix">
+  <%= form_tag posts_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search], :id => "searchbar" %>
+      <%= submit_tag "Search", :name => nil , :id => "searchbtn" %>
+    </p>
+  <% end %>
+  <% @posts.each do |post| %>
+    <div class="col-md-6 box">
+      <div class="post">
+        <div class="post-head">
+          <div class="name">
+            <%= link_to post.user.user_name, profile_path(post.user.user_name) %>
+          </div>
+        </div>
+        <div class="image center-block">
+          <%= link_to (image_tag post.image.url, class:'img-responsive'), post_path(post) %>
+        </div>
+        <p class="caption"></p>
+        <h1>
+          <%= post.title %>
+        </h1>
+        <br/>
+        <p>
+          <span class="glyphicon glyphicon-map-marker"></span>
+          <%= post.address %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+  <% my_url = "http://maps.google.com/maps/api/staticmap?size=400x500&sensor=false&zoom=12" %>
+  <% @posts.each do |post| %>
+  <% my_url += "&markers=#{post.latitude}%2C#{post.longitude}" %>
+  <% end %>
+  <%= image_tag my_url , class:'indexmap' %>

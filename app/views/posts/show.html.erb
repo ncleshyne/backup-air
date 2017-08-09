@@ -1,0 +1,42 @@
+<%= render 'post', post: @post %>
+<div class="post-bottom">
+  <div class="caption">
+    <div class="caption-content">
+      <%= @post.title %>
+      <br/>
+      <%= @post.about %>
+      <br/>
+      <%= @post.accommodates %>
+      <br/>
+      <%= @post.bathrooms %>
+      <br/>
+      <%= @post.bedrooms %>
+      <br/>
+      <%= @post.beds %>
+      <br/>
+      <%= @post.property_type %>
+      <br/>
+      <%= @post.room_type %>
+      <br/>
+      <%= @post.amenities %>
+      <br/>
+      <%= @post.price %>
+      <%= @post.house_rules %>
+    </div>
+  </div>
+</div>
+<%= @post.address %>
+<div class = "col-xs-12 col-sm-12 col-md-7 col-lg-7" id="showroommap">
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@post.latitude}%2C#{@post.longitude}" %>
+</div>
+<% if @post.user.id == current_user.id %>
+  <div class="text-center edit-links">
+    <%= link_to "Cancel", posts_path %>
+    |
+    <%= link_to "Edit Post", edit_post_path(@post) %>
+  </div>
+<% else %>
+  <div class="text-center edit-links">
+    <%= link_to "Cancel", posts_path %>
+  </div>
+<% end %>

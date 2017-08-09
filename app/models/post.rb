@@ -6,4 +6,6 @@ class Post < ActiveRecord::Base
   has_attached_file :image
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   has_many :comments, dependent: :destroy
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode, :if => :address_changed?
 end
